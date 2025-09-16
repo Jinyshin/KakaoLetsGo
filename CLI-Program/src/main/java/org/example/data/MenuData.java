@@ -25,7 +25,7 @@ public class MenuData {
     );
     
     // 메뉴별 고정 가격 (원)
-    public static final Map<String, Integer> MENU_PRICES = new HashMap<String, Integer>() {{
+    public static final Map<String, Integer> MENU_PRICES = new HashMap<>() {{
         // 샌드위치 가격
         put("이탈리안 비엠티", 8500);
         put("터키 베이컨 아보카도", 9000);
@@ -76,42 +76,46 @@ public class MenuData {
         "올리브오일",
         "발사믹"
     );
-    
+
     // 랜덤 선택을 위한 메서드
+    private static String getRandomItem(List<String> items) {
+        return items.get((int) (Math.random() * items.size()));
+    }
+
     public static String getRandomSandwich() {
-        return SANDWICH_TYPES.get((int) (Math.random() * SANDWICH_TYPES.size()));
+        return getRandomItem(SANDWICH_TYPES);
     }
     
     public static String getRandomSalad() {
-        return SALAD_TYPES.get((int) (Math.random() * SALAD_TYPES.size()));
+        return getRandomItem(SALAD_TYPES);
     }
     
     public static String getRandomSide() {
-        return SIDE_TYPES.get((int) (Math.random() * SIDE_TYPES.size()));
+        return getRandomItem(SIDE_TYPES);
     }
     
     public static String getRandomVegetable() {
-        return VEGETABLES.get((int) (Math.random() * VEGETABLES.size()));
+        return getRandomItem(VEGETABLES);
     }
     
     public static String getRandomMeat() {
-        return MEATS.get((int) (Math.random() * MEATS.size()));
+        return getRandomItem(MEATS);
     }
     
     public static String getRandomBread() {
-        return BREADS.get((int) (Math.random() * BREADS.size()));
+        return getRandomItem(BREADS);
     }
     
     public static String getRandomSauce() {
-        return SAUCES.get((int) (Math.random() * SAUCES.size()));
+        return getRandomItem(SAUCES);
     }
     
     public static String getRandomCheese() {
-        return CHEESES.get((int) (Math.random() * CHEESES.size()));
+        return getRandomItem(CHEESES);
     }
     
     public static String getRandomDressing() {
-        return DRESSINGS.get((int) (Math.random() * DRESSINGS.size()));
+        return getRandomItem(DRESSINGS);
     }
     
     // 가격 조회 메서드

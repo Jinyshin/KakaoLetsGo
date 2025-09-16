@@ -10,15 +10,18 @@ public class LoggerThread implements Runnable {
   private static final BlockingQueue<String> logQueue = new LinkedBlockingQueue<>();
   private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
+  private static String formatLogMessage(String message) {
+    String timestamp = LocalTime.now().format(timeFormatter);
+    return "[" + timestamp + "] " + message;
+  }
+
   public static void log(String message) {
     try {
-      String timestamp = LocalTime.now().format(timeFormatter);
-      String formattedMessage = "[" + timestamp + "] " + message;
+      String formattedMessage = formatLogMessage(message);
       logQueue.put(formattedMessage);
     } catch (InterruptedException e) {
       // interrupt 상황에서도 로그를 넣기 위해 offer 사용
-      String timestamp = LocalTime.now().format(timeFormatter);
-      String formattedMessage = "[" + timestamp + "] " + message;
+      String formattedMessage = formatLogMessage(message);
       boolean success = logQueue.offer(formattedMessage);
       if (!success) {
         System.err.println("Failed to add log message: " + formattedMessage);

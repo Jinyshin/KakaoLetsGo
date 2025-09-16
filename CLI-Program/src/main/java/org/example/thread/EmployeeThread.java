@@ -1,6 +1,7 @@
 package org.example.thread;
 
 import org.example.domain.Order;
+import org.example.domain.OrderStatus;
 import org.example.domain.SubwayStore;
 import org.example.service.SimulationStats;
 
@@ -22,7 +23,7 @@ public class EmployeeThread implements Runnable {
       try {
         Order order = store.getNextOrder();
 
-        order.setStatus("IN_PROGRESS");
+        order.setStatus(OrderStatus.PREPARING);
         LoggerThread.log(threadName + ": 주문 제조 시작 (주문ID: " + order.getId() + ")");
         
         // 1-5초 랜덤 대기 (제조 시간)
@@ -31,7 +32,7 @@ public class EmployeeThread implements Runnable {
         Thread.sleep(randomSeconds * 1000L);
         long endTime = System.currentTimeMillis();
         
-        order.setStatus("COMPLETED");
+        order.setStatus(OrderStatus.COMPLETED);
 
         LoggerThread.log(threadName + ": 주문 제조 완료 (주문ID: " + order.getId() + ")");
         long processingTime = endTime - startTime;

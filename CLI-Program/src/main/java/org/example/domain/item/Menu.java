@@ -1,11 +1,11 @@
 package org.example.domain.item;
 
-public class FoodItem {
+public class Menu {
 
   private final String name;
   private final int price;
 
-  public FoodItem(String name, int price) {
+  public Menu(String name, int price) {
     this.name = name;
     this.price = price;
   }

@@ -1,12 +1,10 @@
 package org.example.domain.item;
 
-import java.util.List;
-
-public class SideItem extends FoodItem {
+public class SideMenu extends Menu {
 
   private final String sideType;
 
-  public SideItem(String name, int price, String sideType) {
+  public SideMenu(String name, int price, String sideType) {
     super(name, price);
     this.sideType = sideType;
   }
